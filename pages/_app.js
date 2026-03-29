@@ -1,6 +1,7 @@
 // import '@/styles/animate.css' // @see https://animate.style/
 import '@/styles/globals.css'
 import '@/styles/utility-patterns.css'
+import '@/styles/site-pages.css'
 
 // core styles shared by all of react-notion-x (required)
 import '@/styles/notion.css' //  重写部分notion样式
@@ -17,6 +18,7 @@ import { getQueryParam } from '../lib/utils'
 import BLOG from '@/blog.config'
 import ExternalPlugins from '@/components/ExternalPlugins'
 import SEO from '@/components/SEO'
+import { siteMeta } from '@/lib/site-pages/content'
 import { zhCN } from '@clerk/localizations'
 import dynamic from 'next/dynamic'
 // import { ClerkProvider } from '@clerk/nextjs'
@@ -34,13 +36,37 @@ const MyApp = ({ Component, pageProps }) => {
   useAdjustStyle()
 
   const route = useRouter()
+  const normalizedPageProps = useMemo(() => {
+    const forcedConfig = {
+      THEME: BLOG.THEME,
+      LANG: BLOG.LANG,
+      LINK: BLOG.LINK,
+      AUTHOR: BLOG.AUTHOR,
+      BIO: BLOG.BIO,
+      CUSTOM_MENU: BLOG.CUSTOM_MENU
+    }
+
+    return {
+      ...pageProps,
+      siteInfo: {
+        ...(pageProps?.siteInfo || {}),
+        title: siteMeta.title,
+        description: siteMeta.description
+      },
+      NOTION_CONFIG: {
+        ...(pageProps?.NOTION_CONFIG || {}),
+        ...forcedConfig
+      }
+    }
+  }, [pageProps])
+
   const theme = useMemo(() => {
     return (
       getQueryParam(route.asPath, 'theme') ||
-      pageProps?.NOTION_CONFIG?.THEME ||
+      normalizedPageProps?.NOTION_CONFIG?.THEME ||
       BLOG.THEME
     )
-  }, [route])
+  }, [normalizedPageProps?.NOTION_CONFIG?.THEME, route])
 
   // 整体布局
   const GLayout = useCallback(
@@ -52,13 +78,18 @@ const MyApp = ({ Component, pageProps }) => {
   )
 
   const enableClerk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  const disableThemeLayout = Component.disableThemeLayout
   const content = (
-    <GlobalContextProvider {...pageProps}>
-      <GLayout {...pageProps}>
-        <SEO {...pageProps} />
-        <Component {...pageProps} />
-      </GLayout>
-      <ExternalPlugins {...pageProps} />
+    <GlobalContextProvider {...normalizedPageProps}>
+      {disableThemeLayout ? (
+        <Component {...normalizedPageProps} />
+      ) : (
+        <GLayout {...normalizedPageProps}>
+          <SEO {...normalizedPageProps} />
+          <Component {...normalizedPageProps} />
+        </GLayout>
+      )}
+      <ExternalPlugins {...normalizedPageProps} />
     </GlobalContextProvider>
   )
   return (

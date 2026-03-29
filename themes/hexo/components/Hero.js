@@ -6,6 +6,7 @@ import { loadExternalResource } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 import CONFIG from '../config'
 import NavButtonGroup from './NavButtonGroup'
+import { siteMeta } from '@/lib/site-pages/content'
 
 let wrapperTop = 0
 
@@ -62,8 +63,11 @@ const Hero = props => {
       className='w-full h-screen relative bg-black'>
       <div className='text-white absolute bottom-0 flex flex-col h-full items-center justify-center w-full '>
         {/* 站点标题 */}
-        <div className='font-black text-4xl md:text-5xl shadow-text'>
+        <div className='px-6 text-center font-black text-4xl md:text-5xl shadow-text'>
           {siteInfo?.title || siteConfig('TITLE')}
+        </div>
+        <div className='mt-5 max-w-3xl px-8 text-center text-lg leading-9 text-white/90 shadow-text md:text-xl'>
+          {siteMeta.tagline}
         </div>
         {/* 站点欢迎语 */}
         <div className='mt-2 h-12 items-center text-center font-medium shadow-text text-lg'>

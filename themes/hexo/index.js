@@ -23,6 +23,7 @@ import Card from './components/Card'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
+import HomeIntro from './components/HomeIntro'
 import PostHero from './components/PostHero'
 import RightFloatArea from './components/RightFloatArea'
 import SearchNav from './components/SearchNav'
@@ -169,7 +170,11 @@ const LayoutBase = props => {
  * @returns
  */
 const LayoutIndex = props => {
-  return <LayoutPostList {...props} className='pt-8' />
+  return (
+    <div className='pt-8 space-y-6'>
+      <HomeIntro />
+    </div>
+  )
 }
 
 /**

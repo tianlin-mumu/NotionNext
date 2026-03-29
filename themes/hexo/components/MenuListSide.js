@@ -1,5 +1,6 @@
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
+import { siteNavigation } from '@/lib/site-pages/content'
 import CONFIG from '../config'
 import { MenuItemCollapse } from './MenuItemCollapse'
 /**
@@ -8,8 +9,15 @@ import { MenuItemCollapse } from './MenuItemCollapse'
  * @returns
  */
 export const MenuListSide = props => {
-  const { customNav, customMenu } = props
+  const { customMenu } = props
   const { locale } = useGlobal()
+
+  const primaryLinks = siteNavigation.map((item, index) => ({
+    id: index + 100,
+    name: item.label,
+    href: item.href,
+    show: true
+  }))
 
   let links = [
     {
@@ -38,9 +46,7 @@ export const MenuListSide = props => {
     }
   ]
 
-  if (customNav) {
-    links = customNav.concat(links)
-  }
+  links = primaryLinks.concat(links)
 
   for (let i = 0; i < links.length; i++) {
     if (links[i].id !== i) {
