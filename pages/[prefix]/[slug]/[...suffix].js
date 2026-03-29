@@ -2,6 +2,7 @@ import BLOG from '@/blog.config'
 import { siteConfig } from '@/lib/config'
 import { fetchGlobalAllData, resolvePostProps } from '@/lib/db/SiteDataApi'
 import { checkSlugHasMorThanTwoSlash, processPostData } from '@/lib/utils/post'
+import { hasReservedRouteConflict } from '@/lib/utils/route'
 import { idToUuid } from 'notion-utils'
 import Slug from '..'
 
@@ -30,7 +31,10 @@ export async function getStaticPaths() {
   const from = 'slug-paths'
   const { allPages } = await fetchGlobalAllData({ from })
   const paths = allPages
-    ?.filter(row => checkSlugHasMorThanTwoSlash(row))
+    ?.filter(
+      row =>
+        checkSlugHasMorThanTwoSlash(row) && !hasReservedRouteConflict(row.slug)
+    )
     .map(row => ({
       params: {
         prefix: row.slug.split('/')[0],

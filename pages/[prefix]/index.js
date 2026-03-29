@@ -7,6 +7,7 @@ import { useGlobal } from '@/lib/global'
 import { getPageTableOfContents } from '@/lib/db/notion/getPageTableOfContents'
 import { getPasswordQuery } from '@/lib/utils/password'
 import { checkSlugHasMorThanTwoSlash, checkSlugHasNoSlash, processPostData } from '@/lib/utils/post'
+import { hasReservedRouteConflict } from '@/lib/utils/route'
 import { DynamicLayout } from '@/themes/theme'
 import md5 from 'js-md5'
 import { useRouter } from 'next/router'
@@ -106,7 +107,9 @@ export async function getStaticPaths() {
   const from = 'slug-paths'
   const { allPages } = await fetchGlobalAllData({ from })
   const paths = allPages
-    ?.filter(row => checkSlugHasNoSlash(row))
+    ?.filter(
+      row => checkSlugHasNoSlash(row) && !hasReservedRouteConflict(row.slug)
+    )
     .map(row => ({ params: { prefix: row.slug } }))
   return {
     paths: paths,

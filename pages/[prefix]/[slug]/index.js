@@ -1,6 +1,7 @@
 import BLOG from '@/blog.config'
 import { siteConfig } from '@/lib/config'
 import { fetchGlobalAllData, resolvePostProps } from '@/lib/db/SiteDataApi'
+import { hasReservedRouteConflict } from '@/lib/utils/route'
 import Slug from '..'
 import { checkSlugHasOneSlash } from '@/lib/utils/post'
 
@@ -28,7 +29,9 @@ export async function getStaticPaths() {
   // 根据slug中的 / 分割成prefix和slug两个字段 ; 例如 article/test
   // 最终用户可以通过  [domain]/[prefix]/[slug] 路径访问，即这里的 [domain]/article/test
   const paths = allPages
-    ?.filter(row => checkSlugHasOneSlash(row))
+    ?.filter(
+      row => checkSlugHasOneSlash(row) && !hasReservedRouteConflict(row.slug)
+    )
     .map(row => ({
       params: { prefix: row.slug.split('/')[0], slug: row.slug.split('/')[1] }
     }))
