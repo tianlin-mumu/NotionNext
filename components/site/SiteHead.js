@@ -4,7 +4,7 @@ import { siteMeta } from '@/lib/site-pages/content'
 export default function SiteHead({
   title,
   description = siteMeta.description,
-  image = '/images/site-assets/tianlin.png'
+  image = '/images/site-assets/tianlin-book-avatar.png'
 }) {
   const pageTitle = title ? `${title} | ${siteMeta.title}` : siteMeta.title
 

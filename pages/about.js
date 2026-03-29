@@ -34,6 +34,17 @@ export default function AboutPage() {
                 <p key={text}>{text}</p>
               ))}
             </div>
+
+            <div className='mt-10 rounded-[28px] border border-[rgba(117,91,56,0.14)] bg-[rgba(255,251,244,0.62)] px-6 py-6 md:px-8'>
+              <div className='site-ui text-sm uppercase tracking-[0.24em] text-[rgba(111,90,69,0.62)]'>
+                {aboutPage.closingTitle}
+              </div>
+              {aboutPage.closing.map(text => (
+                <p key={text} className='mt-4'>
+                  {text}
+                </p>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -41,7 +52,7 @@ export default function AboutPage() {
           <section className='site-shell-card rounded-[32px] p-6 md:p-8'>
             <div className='relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] bg-[rgba(255,255,255,0.55)]'>
               <Image
-                src='/images/site-assets/tianlin.png'
+                src='/images/site-assets/tianlin-book-avatar.png'
                 alt='田林'
                 fill
                 className='object-cover'

@@ -1,0 +1,27 @@
+name: Published Page Check
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  verify-live-site:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify published pages are complete
+        env:
+          SITE_URL: https://www.tianlin.site
+          CHECK_RETRIES: 12
+          CHECK_RETRY_DELAY_MS: 30000
+        run: node scripts/check-page-endings.js

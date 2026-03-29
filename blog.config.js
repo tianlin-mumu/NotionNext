@@ -15,6 +15,7 @@ const BLOG = {
 
   AUTHOR: '田林', // 您的昵称 例如 tangly1024
   BIO: '一个通过践行长期主义而改变命运的普通人。', // 作者简介
+  AVATAR: '/images/site-assets/tianlin-book-avatar.png', // 站点头像
   LINK: 'https://www.tianlin.site/', // 网站地址
   KEYWORDS: 'AI 时代, 长期主义, 个人成长, 焦虑, 人生方向', // 网站关键词 英文逗号隔开
   BLOG_FAVICON: process.env.NEXT_PUBLIC_FAVICON || '/favicon.ico', // blog favicon 配置, 默认使用 /public/favicon.ico，支持在线图片，如 https://img.imesong.com/favicon.png

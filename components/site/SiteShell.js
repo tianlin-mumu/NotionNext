@@ -39,7 +39,7 @@ export default function SiteShell({
           <Link href='/' className='flex items-center gap-3'>
             <div className='relative h-11 w-11 overflow-hidden rounded-full border border-[rgba(117,91,56,0.18)] bg-white/70'>
               <Image
-                src='/images/site-assets/tianlin.png'
+                src='/images/site-assets/tianlin-book-avatar.png'
                 alt='田林'
                 fill
                 className='object-cover'

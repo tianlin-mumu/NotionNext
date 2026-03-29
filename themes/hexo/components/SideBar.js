@@ -12,8 +12,8 @@ import { MenuListSide } from './MenuListSide'
  * @constructor
  */
 const SideBar = props => {
-  const { siteInfo } = props
   const router = useRouter()
+  const avatar = siteConfig('AVATAR')
   return (
     <div id='side-bar'>
       <div className='h-52 w-full flex justify-center'>
@@ -25,7 +25,7 @@ const SideBar = props => {
             className='justify-center items-center flex hover:rotate-45 py-6 hover:scale-105 dark:text-gray-100  transform duration-200 cursor-pointer'>
             {/* 头像 */}
             <LazyImage
-              src={siteInfo?.icon}
+              src={avatar}
               className='rounded-full'
               width={80}
               alt={siteConfig('AUTHOR')}

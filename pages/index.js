@@ -51,6 +51,7 @@ export async function getStaticProps(req) {
     generateRedirectJson(props)
   }
 
+  delete props.notice
   delete props.allPages
 
   return {

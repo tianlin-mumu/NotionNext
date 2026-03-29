@@ -224,7 +224,14 @@ const SEO = props => {
  * @param {*} author
  * @returns
  */
+const toAbsoluteAssetUrl = url => {
+  if (!url) return undefined
+  if (url.startsWith('http://') || url.startsWith('https://')) return url
+  return `${siteConfig('LINK')}${url.startsWith('/') ? '' : '/'}${url}`
+}
+
 const generateStructuredData = (meta, siteInfo, url, image, author) => {
+  const publisherLogo = toAbsoluteAssetUrl(siteConfig('AVATAR') || siteInfo?.icon)
   const baseData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -240,7 +247,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
       name: siteInfo?.title,
       logo: {
         '@type': 'ImageObject',
-        url: siteInfo?.icon
+        url: publisherLogo
       }
     }
   }
@@ -265,7 +272,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
         name: siteInfo?.title,
         logo: {
           '@type': 'ImageObject',
-          url: siteInfo?.icon
+          url: publisherLogo
         }
       },
       mainEntityOfPage: {
