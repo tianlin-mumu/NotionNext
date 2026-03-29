@@ -122,6 +122,20 @@ export async function getStaticProps({ params: { prefix }, locale }) {
     prefix,
     locale,
   })
+
+  if (!props?.post) {
+    return {
+      notFound: true,
+      revalidate: process.env.EXPORT
+        ? undefined
+        : siteConfig(
+          'NEXT_REVALIDATE_SECOND',
+          BLOG.NEXT_REVALIDATE_SECOND,
+          props?.NOTION_CONFIG
+        )
+    }
+  }
+
   return {
     props,
     revalidate: process.env.EXPORT
