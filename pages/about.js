@@ -24,12 +24,16 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <h2>这些年我一直在做的事情</h2>
-            <ul>
-              {aboutPage.values.map(item => (
-                <li key={item}>{item}</li>
+            <div className='mt-10 rounded-[28px] border border-[rgba(117,91,56,0.14)] bg-[rgba(255,251,244,0.62)] px-6 py-6 md:px-8'>
+              <div className='site-ui text-sm uppercase tracking-[0.24em] text-[rgba(111,90,69,0.62)]'>
+                我写过的一本书
+              </div>
+              <h2 className='mt-4'>{aboutPage.book.title}</h2>
+              <p>{aboutPage.book.intro}</p>
+              {aboutPage.book.body.map(text => (
+                <p key={text}>{text}</p>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
 
@@ -49,6 +53,7 @@ export default function AboutPage() {
               <div>长期主义践行者</div>
               <div>AI 创业者</div>
               <div>常住深圳</div>
+              <div>著有《AI 时代不焦虑！用长期主义打破人生困局》</div>
             </div>
           </section>
 
