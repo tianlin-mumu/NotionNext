@@ -29,6 +29,13 @@ async function fetchPage(check) {
   }
 
   const html = await response.text()
+  const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i)
+  const pageTitle = titleMatch?.[1] || ''
+
+  if (check.expectedTitle && !pageTitle.includes(check.expectedTitle)) {
+    throw new Error(`标题不符合预期: ${pageTitle || '未找到 <title>'}`)
+  }
+
   const expectedTexts = Array.isArray(check.expectedText)
     ? check.expectedText
     : [check.expectedText]
@@ -64,7 +71,8 @@ async function fetchPage(check) {
     url: url.toString(),
     ratio,
     size: html.length,
-    matchedText: matched.text
+    matchedText: matched.text,
+    title: pageTitle
   }
 }
 
@@ -82,7 +90,7 @@ async function main() {
       try {
         const result = await fetchPage(check)
         console.log(
-          `PASS ${check.label} ${check.path} 结尾位置 ${(result.ratio * 100).toFixed(1)}% 字符数 ${result.size} 标记 ${result.matchedText}`
+          `PASS ${check.label} ${check.path} 标题 ${result.title} 结尾位置 ${(result.ratio * 100).toFixed(1)}% 字符数 ${result.size} 标记 ${result.matchedText}`
         )
         lastError = null
         break

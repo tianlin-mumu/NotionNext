@@ -2,6 +2,7 @@
   {
     "path": "/",
     "label": "首页",
+    "expectedTitle": "AI 时代不焦虑",
     "expectedText": "依然有用的东西",
     "minPositionRatio": 0.12,
     "forbiddenTexts": [
@@ -16,56 +17,91 @@
   {
     "path": "/about",
     "label": "关于田林",
+    "expectedTitle": "关于田林",
     "expectedText": "这件事对我来说就足够有意义"
   },
   {
     "path": "/companion",
     "label": "陪伴计划",
+    "expectedTitle": "陪伴计划",
     "expectedText": "那时再来就好"
   },
   {
     "path": "/path/care",
     "label": "先照顾好自己",
+    "expectedTitle": "先照顾好自己",
     "expectedText": "人才有力气重新思考"
   },
   {
     "path": "/path/judgment",
     "label": "学会做判断",
+    "expectedTitle": "学会做判断",
     "expectedText": "从长期来看对你意味着什么"
   },
   {
     "path": "/path/life",
     "label": "把日子过好",
+    "expectedTitle": "把日子过好",
     "expectedText": "也一直在练习"
   },
   {
     "path": "/path/identity",
     "label": "找到自己的位置",
+    "expectedTitle": "找到自己的位置",
     "expectedText": "很多选择才会跟着变"
+  },
+  {
+    "path": "/essay/campus-bullying-it-was-not-our-fault",
+    "label": "校园霸凌",
+    "expectedTitle": "校园霸凌：经历糟糕的事情，不是我们的错",
+    "expectedText": "欢迎购买阅读这本书"
+  },
+  {
+    "path": "/essay/confidence-begins-with-earning-money",
+    "label": "贫穷自卑",
+    "expectedTitle": "贫穷自卑：建立自信的第一步，是好好挣钱",
+    "expectedText": "欢迎购买阅读这本书"
+  },
+  {
+    "path": "/essay/change-the-way-you-ask-questions",
+    "label": "自我改变",
+    "expectedTitle": "自我改变：改变提问方式，重新塑造人生",
+    "expectedText": "欢迎购买阅读这本书"
+  },
+  {
+    "path": "/essay/stability-is-the-greatest-illusion",
+    "label": "人生选择",
+    "expectedTitle": "人生选择：稳定是最大的幻觉，清醒是唯一的出路",
+    "expectedText": "欢迎购买阅读这本书"
   },
   {
     "path": "/essay/ai-is-not-the-root-of-anxiety",
     "label": "AI 并不是焦虑的根源",
+    "expectedTitle": "AI 并不是焦虑的根源",
     "expectedText": "建立自己的判断框架"
   },
   {
     "path": "/essay/long-termism-is-not-slow-but-steady",
     "label": "长期主义不是“慢”，而是“稳”",
+    "expectedTitle": "长期主义不是“慢”，而是“稳”",
     "expectedText": "有用的焦虑"
   },
   {
     "path": "/essay/less-noise-not-more-information",
     "label": "你需要的不是“更多信息”，而是“更少噪音”",
+    "expectedTitle": "你需要的不是“更多信息”，而是“更少噪音”",
     "expectedText": "走在了大多数人的前面"
   },
   {
     "path": "/essay/how-to-build-an-emotional-buffer",
     "label": "如何建立“情绪缓冲区”",
+    "expectedTitle": "如何建立“情绪缓冲区”",
     "expectedText": "而是情绪的主人"
   },
   {
     "path": "/essay/where-human-value-remains-in-the-age-of-ai",
     "label": "如果 AI 能力边界不断扩展，人类的价值在哪里？",
+    "expectedTitle": "如果 AI 能力边界不断扩展，人类的价值在哪里？",
     "expectedText": "而在于我们是谁"
   }
 ]
